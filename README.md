@@ -7,7 +7,7 @@
   Add your open source license, GitHub uses MIT license.
 -->
 
-This site is live at https://ziyangpig.github.io/ML/
+This site is live at https://ziyangpig.github.io/Note_LeetCode/
 
 <footer>
 
