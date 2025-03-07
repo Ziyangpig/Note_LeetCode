@@ -1,6 +1,5 @@
 ---
-title: "Linear model"
-date: 2024-12-06
+title: "阿里算法 笔试真题笔记"
 ---
 
 # Logistic Regression
