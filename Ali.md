@@ -25,16 +25,11 @@ title: "阿里算法 笔试真题笔记"
 4.查询同层节点的LCA：对这两个结点循环执行上移，直至相遇，循环中计数
 
 读取输入
-'''python
+```python
 q = int(input())
 for _ in range(q):
     x, y = map(int, input().split())
-'''
-
-```python
-def hello():
-    print("Hello, World!")
-```
+```  
 
 
    
