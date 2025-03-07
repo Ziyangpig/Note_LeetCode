@@ -1,13 +1,11 @@
 ---
-title: ML SLIDE NOTE
+title: 算法岗笔试刷题笔记
 ---
 
 # Content
 
 
-[Generalization Error](./Generalization Error.html)
+[阿里算法笔试真题笔记](./Ali.html)
 
-[Linear model](./Linear model.html)
 
-[Optimizaiton Method](./Optimization Algorithm.md)
 
