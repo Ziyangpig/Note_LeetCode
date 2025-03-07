@@ -3,9 +3,9 @@ title: "阿里算法 笔试真题笔记"
 ---
 
 # 奇怪二叉树
+
 > 二叉树 位运算 LCA
 ## 题目描述
-**logistic function/sigmod**
 [奇怪二叉树](https://www.neituiya.com/oj/7/725)
 
 ## 思路
