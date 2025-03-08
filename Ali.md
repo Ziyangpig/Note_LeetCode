@@ -12,6 +12,7 @@ title: "阿里算法 笔试真题笔记"
 - 注意while结束后仍然没找到，return -1
 
 ## 移除元素
+给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。
 ### 我的解法：
 计数器 count 统计已经碰到的要删除元素的个数，也即之后的元素要前移的长度  
 
@@ -19,9 +20,49 @@ for循环遍历，每个元素i前移count
 
 ### 标准解法
 快慢指针法：fast指向正在处理的待移动元素，slow指针指向待被移入的位置  
+首尾指针法
 
 while fast < size
 
+## 例题：[比较含退格字符串](https://leetcode.cn/problems/backspace-string-compare/submissions/607868111)
+- 计数器统计#，
+- 字符串无法更改，只能新建一个list用来存放
+- 指针搜索，逆向
+
+## [长度最小字串](https://leetcode.cn/problems/minimum-size-subarray-sum/submissions/607924611)
+给定一个含有 n 个正整数的数组和一个正整数 target 。
+
+找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
+- 滑动窗口
+- 思想：两个指针分别指着窗口的头和尾，这个窗口不断向后滑动。
+- 1. 初始head不动，tail不断向后，直至找到满足条件的。当前长度的字串已经找到，其他同样长度的字串无需再找
+  2. head后移一位，维持当前长度，继续不断向后移动。
+  3. 如果又找到满足条件的。重复第二步，如果tail到达尾部，结束循环
+     注意：边界情况在第一步出现，head不动，tail不断向后，可能出现整个数组也不满足条件
+     
+ ```python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        ind1 = 0
+        ind2 = 1
+        min_l = []
+        while ind1 <= len(nums)-1:
+            if sum(nums[ind1:ind2]) >= target:
+                min_l = nums[ind1:ind2]
+                ind1 += 1
+                
+            else:
+                if ind2 == len(nums) and len(min_l) == 0:
+                    return 0
+                if ind2 < len(nums):
+                    ind2 += 1
+                if len(min_l) > 0: 
+                    ind1 += 1
+                
+        return len(min_l)
+```
+
+Note: 以上代码会有runtime错误，因为sum操作本质也是一层循环遍历，因此要将求和放在while内实现
 # 奇怪二叉树
 
 > 二叉树 位运算 LCA
