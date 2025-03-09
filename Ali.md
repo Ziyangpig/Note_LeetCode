@@ -46,7 +46,7 @@ class Solution:
         ind1 = 0
         ind2 = 1
         min_l = []
-        while ind1 <= len(nums)-1:
+        while ind1 <= len(nums)-1:  # 循环体条件： 
             if sum(nums[ind1:ind2]) >= target:
                 min_l = nums[ind1:ind2]
                 ind1 += 1
@@ -62,7 +62,64 @@ class Solution:
         return len(min_l)
 ```
 
-Note: 以上代码会有runtime错误，因为sum操作本质也是一层循环遍历，因此要将求和放在while内实现
+Note: 以上代码会有runtime错误，因为sum操作本质也是一层循环遍历，因此要将求和放在while内实现  
+
+```python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        ind1 = 0
+        ind2 = 0
+        cur_l = len(nums) + 1
+        cur_s = nums[ind1]
+        while ind1 <= len(nums)-1:   # 循环体退出条件：在我的指针下，ind1和ind2指同一个位置是有意义的，代表长度为1，因此ind1可以指到最后一位len(nums)-1
+            if cur_s >= target:
+                cur_l = ind2 - ind1 + 1 
+                cur_s -= nums[ind1]   
+                ind1 += 1   # 这边加超之后，循环体条件破坏，就退出，上一行索引不会超
+            else:
+                if ind2 == len(nums)-1 and cur_l > len(nums):
+                    return 0  # 这个if语句，是ind1可能一直在0位，while循环体无法退出
+                if ind2 < len(nums)-1:
+                    ind2 += 1  
+                    cur_s += nums[ind2]      # cur_s 的累加，head指针ind2 先加，再累和
+                if cur_l < len(nums) + 1: 
+                    cur_s -= nums[ind1]    # cur_s 先减，tail指针再前移
+                    ind1 += 1  
+                      
+        return cur_l if cur_l < len(nums) + 1 else 0
+```
+
+## 数组前缀和
+如果查询m次，每次查询的范围都是从0 到 n - 1, 那么该算法的时间复杂度是 O(n * m).  前缀和的思想是重复利用计算过的子数组之和，从而降低区间查询需要累加计算的次数。 
+
+**note:**
+- 使用前缀和计算区间[a,b]的和时，用arr\[b] - arr\[a-1]
+- 但如果a=0的话，直接就是arr\[b]
+
+
+```python
+import sys
+l = int(input())
+# arr = []
+pre_sum = []
+for _ in range(l):
+    a = int(input())
+    # arr.append()
+    if len(pre_sum)==0:
+        pre_sum.append(a)
+    else:
+        pre_sum.append(a+pre_sum[-1])
+
+
+for line in sys.stdin:
+    a,b = map(int,line.split())
+    if a == 0:
+        print(pre_sum[b])
+    else:
+        print(pre_sum[b]-pre_sum[a-1])
+```
+
+
 # 奇怪二叉树
 
 > 二叉树 位运算 LCA
