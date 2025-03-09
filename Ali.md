@@ -136,7 +136,7 @@ for line in sys.stdin:
 [螺旋矩阵](https://leetcode.cn/problems/spiral-matrix-ii/)
 
 纪念一下，第一次自己想的写的，内存耗时都不错
-![效果]()
+![效果](./pics/image.png)
 ```python
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
