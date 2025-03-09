@@ -3,6 +3,17 @@ title: "阿里算法 笔试真题笔记"
 ---
 # 数列
 
+## 待debug例题
+[开发商份土地](https://kamacoder.com/problempage.php?pid=1044)  
+
+本来用二分法+两个前缀和，但是用以下代码可以发现：二分法没有直接用for循环节省内存。  
+```python
+try:
+   代码
+excep Exception as e:
+  print(str(e)) 
+```
+
 ## 有序数组查找: 二分法
 - 二分法的核心：用中间点的数据进行判断，决定是留下左半边区间，还是右半边区间，或者直接返回中间点
 - 注意：
@@ -25,9 +36,10 @@ for循环遍历，每个元素i前移count
 while fast < size
 
 ## 例题：[比较含退格字符串](https://leetcode.cn/problems/backspace-string-compare/submissions/607868111)
-- 计数器统计#，
+- 指针逆向搜索，因为后面的字符不受前面输入影响
+- 计数器统计#数量，当碰到非#字符，只有count=0，才能放入new list里，否则，只能让count数-1
 - 字符串无法更改，只能新建一个list用来存放
-- 指针搜索，逆向
+
 
 ## [长度最小字串](https://leetcode.cn/problems/minimum-size-subarray-sum/submissions/607924611)
 给定一个含有 n 个正整数的数组和一个正整数 target 。
@@ -92,10 +104,12 @@ class Solution:
 ## 数组前缀和
 如果查询m次，每次查询的范围都是从0 到 n - 1, 那么该算法的时间复杂度是 O(n * m).  前缀和的思想是重复利用计算过的子数组之和，从而降低区间查询需要累加计算的次数。 
 
-**note:**
+**计算前缀和**
+- 处理输入数据的时候，就可以开始计算前缀和了，无需储存原始数据
+- 如果是0位，直接赋值，如果非0位，则用前一位的前缀和+当前输入
+**利用前缀和计算区间和**
 - 使用前缀和计算区间[a,b]的和时，用arr\[b] - arr\[a-1]
 - 但如果a=0的话，直接就是arr\[b]
-
 
 ```python
 import sys
@@ -117,6 +131,35 @@ for line in sys.stdin:
         print(pre_sum[b])
     else:
         print(pre_sum[b]-pre_sum[a-1])
+```
+
+[螺旋矩阵](https://leetcode.cn/problems/spiral-matrix-ii/)
+
+纪念一下，第一次自己想的写的，内存耗时都不错
+![效果]()
+```python
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        l = n//2
+        is_odd = n % 2
+        end_num = 0
+        start_p = 0
+        mat = [[0]*n for _ in range(n)]
+        for sl in range(l):
+            for i in range(end_num + 1,end_num + n):
+                mat[start_p][start_p+i-1-end_num] = i
+            for i in range(end_num + n, end_num + 2*n - 1):
+                mat[start_p+i-n-end_num][start_p+n-1] = i
+            for i in range(end_num + 2*n - 1,end_num + 3*n -2):
+                mat[start_p+n-1][start_p+n-1-(i-2*n-end_num+1)] = i
+            for i in range(end_num + 3*n -2,end_num + 4*n -3):
+                mat[start_p+n-1-(i-end_num-3*n+2)][start_p] = i
+            end_num += 4*n -4
+            n -= 2 #check n负数
+            start_p += 1 
+        if is_odd:
+            mat[start_p][start_p] = end_num + 1
+        return mat
 ```
 
 
