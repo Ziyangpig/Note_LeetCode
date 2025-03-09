@@ -133,6 +133,7 @@ for line in sys.stdin:
         print(pre_sum[b]-pre_sum[a-1])
 ```
 
+## 螺旋矩阵
 [螺旋矩阵](https://leetcode.cn/problems/spiral-matrix-ii/)
 
 纪念一下，第一次自己想的写的，内存耗时都不错
@@ -145,10 +146,10 @@ for line in sys.stdin:
 ```python
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
-        l = n//2
-        is_odd = n % 2
-        end_num = 0
-        start_p = 0
+        l = n//2 # 子正方形的个数
+        is_odd = n % 2 # 最后是否有一个边长为1的正方形
+        end_num = 0 # 实时更新每一个正方形结束后，填到哪个数字了
+        start_p = 0 # 每个正方形的开始坐标（start_p, start_p） 和边长n 一起可确定四个顶点坐标
         mat = [[0]*n for _ in range(n)]
         for sl in range(l):
             for i in range(end_num + 1,end_num + n):
