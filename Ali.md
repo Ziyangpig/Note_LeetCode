@@ -136,6 +136,11 @@ for line in sys.stdin:
 [螺旋矩阵](https://leetcode.cn/problems/spiral-matrix-ii/)
 
 纪念一下，第一次自己想的写的，内存耗时都不错
+- 找准循环条件：螺旋的loop数，n//2. (奇数n在最后有一个元素单独填
+- 更新各种状态：每个loop的起始位置start p, 起始数字：end num +1, 每个loop的边长
+- 明确每层loop的四个顶点的坐标，坐标更新即某条轴坐标不动，另一条轴的坐标用 起始坐标+ 移动步数。而移动步数 = 当前数字i - 当前边长的初始顶点的数字
+- 明确每层都是左闭右开原则，即起始顶点填，结束顶点不填，这样四条边走完，正好不覆盖
+
 ![效果](./pics/image.png)
 ```python
 class Solution:
