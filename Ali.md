@@ -218,10 +218,6 @@ a - b
 a <= b, b >= a
 ```
 
-```python
-
-```
-
 
 **dict**
 python 提供的两种特殊的字典
@@ -271,6 +267,9 @@ print(counter.most_common(2))  # [('a', 3), ('b', 2)]
 ## [找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/)
 
 连续子序列+滑动窗口：注意对每个子序列进行某些统计的时候，可以根据滑动情况，更新部分数据即可，不需要每次都对整个子序列进行计算
+
+## [四数之和](https://leetcode.cn/problems/4sum/submissions/610060030/)
+
 
 
 
