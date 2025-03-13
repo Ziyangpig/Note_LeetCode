@@ -280,7 +280,21 @@ print(counter.most_common(2))  # [('a', 3), ('b', 2)]
 答案解法：Counter +三重循环 ，在三重循环内部判断三数之和的complement是否在counter中
 我的解法：三个字典分别存放，三数之和、两数之和，一数，主要是最外层一遍循环，每来了一个数字，按先后顺序，更新根据二数之和更新三数之和，根据一数更新二数
 
+# 字符串
 
+## 反转字符串二
+收获：
+1.模拟题
+2. for循环，每次步长为2k，当超过数组范围，自动结束循环  
+3. 数组切片的保护机制，当切片末尾超过索引范围，自动从末尾切断，实现不足k长度的，直接反转自身
+```python
+class Solution:
+    def reverseStr(self, s: str, k: int) -> str:
+        t = list(s)
+        for i in range(0, len(t), 2 * k):
+            t[i: i + k] = reversed(t[i: i + k])
+        return "".join(t)
+```
 
 # 奇怪二叉树
 
