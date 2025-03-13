@@ -174,10 +174,63 @@ class Solution:
 - 链表循环的时候，判断好while的退出条件，即是要当前结点还是前一结点
 - 判断好边界条件的处理：比如空链表和单节点链表
 
-## (环形链表)[https://leetcode.cn/problems/linked-list-cycle-ii/]
+## [环形链表](https://leetcode.cn/problems/linked-list-cycle-ii/)
+
 快慢指针法：
 判断是否有环：利用环形性质，速度一快一满的两个指针，一定会再次重叠
 判断含环链表的入口：根据快慢指针的速度特性，设计让两个指针能相遇在环状入口处
+
+# 哈希表
+python 提供的两种特殊的字典
+在 Python 的 collections 模块中，defaultdict 和 Counter 是两个常用的工具类，用于简化字典操作和统计任务。以下是它们的详细说明和区别：
+
+1. defaultdict
+作用
+defaultdict 是字典 (dict) 的一个子类，在访问不存在的键时，自动为该键生成一个默认值，避免抛出 KeyError。你需要指定一个默认值的类型（工厂函数）。
+
+使用场景
+当需要按键分组或收集数据（例如将元素分组到列表中）。
+
+需要避免频繁检查键是否存在。
+
+```python
+# 统计单词出现的位置（将位置索引存入列表）
+words = ["apple", "banana", "apple", "cherry", "banana"]
+word_positions = defaultdict(list)
+
+for idx, word in enumerate(words):
+    word_positions[word].append(idx)  # 直接追加，无需检查键是否存在
+
+print(word_positions)
+# 输出：defaultdict(<class 'list'>, {'apple': [0, 2], 'banana': [1, 4], 'cherry': [3]})
+```
+
+2. Counter
+作用
+Counter 是字典的子类，专门用于统计可哈希对象的出现次数。它简化了频率统计任务，提供常见统计方法（如获取最高频元素）。
+
+使用场景
+统计元素频率（如字符、单词、数字出现的次数）。
+
+快速获取前 N 个高频元素。
+```python
+# 统计列表中元素的频率
+data = ["a", "b", "a", "c", "b", "a"]
+counter = Counter(data)
+
+print(counter)
+# 输出：Counter({'a': 3, 'b': 2, 'c': 1})
+
+# 获取出现最多的前2个元素
+print(counter.most_common(2))  # [('a', 3), ('b', 2)]
+```
+
+## [找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/)
+
+连续子序列+滑动窗口：注意对每个子序列进行某些统计的时候，可以根据滑动情况，更新部分数据即可，不需要每次都对整个子序列进行计算
+
+
+
 
 # 奇怪二叉树
 
