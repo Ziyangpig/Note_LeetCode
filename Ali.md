@@ -332,6 +332,16 @@ class Solution:
         return "".join(t)
 ```
 
+# 栈与队列
+python中的双端队列
+```python
+from collections import deque
+d = deque()
+d.appendleft(1)   # 左侧入队 → [1]
+d.append(2)       # 右侧入队 → [1, 2]
+d.popleft()       # 左侧出队 → 1
+d.pop()           # 右侧出队 → 2
+```
 # 奇怪二叉树
 
 > 二叉树 位运算 LCA
