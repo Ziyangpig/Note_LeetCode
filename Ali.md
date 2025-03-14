@@ -281,6 +281,42 @@ print(counter.most_common(2))  # [('a', 3), ('b', 2)]
 我的解法：三个字典分别存放，三数之和、两数之和，一数，主要是最外层一遍循环，每来了一个数字，按先后顺序，更新根据二数之和更新三数之和，根据一数更新二数
 
 # 字符串
+## ASIMA值
+获取asima值：`ord()`  
+判断小写字母、数字
+```python
+ ord("0") <= ord(s) <= ord("9")
+ ord("a") <= ord(s) <= ord("z")
+```
+
+## 字符串基础操作及函数
+
+split默认按照空格/tab等进行拆分，不管单词之间是多少个空格，都能拆分，包括开头的空格和末尾的也都可以删除  
+
+' '.join():   字符串连接函数，以空格进行连接，要传递一个迭代器，
+
+list.reverse(): 直接就地反转，返回list
+reversed(list): 返回一个迭代器
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        word_list = s.split()
+        return ' '.join(reversed(word_list))
+```
+
+取字符串后n位，取到倒数第n位，且切片能自动处理越界，比如字符串长度不足n位，则返回整个字符串
+
+``` python
+sr = s[-n:]
+sl = s[0:-n]
+```
+
+find：获取字符串中子字符串的起始索引，如果没有则返回-1，子字符串可以是单个字符，也可以是多个
+```python
+s = "hello"
+print(s.find("x"))  # 输出 -1
+```
 
 ## 反转字符串二
 收获：
