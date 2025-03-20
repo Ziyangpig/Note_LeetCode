@@ -389,6 +389,10 @@ d.pop()           # 右侧出队 → 2
 有两种
 1. 维护队列，队头弹出，并写入result中，队尾加入这个结点的左右子结点
 2. 递归，思路和中序遍历一致，只不过每次加入的时候，将结点加入一个嵌套list所对应的层数, 递归函数需传递一个level参数
+   
+
+## [验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/description/)
+
 
 > 二叉树 位运算 LCA
 ## 题目描述
